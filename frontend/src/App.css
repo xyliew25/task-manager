@@ -22,7 +22,6 @@
   border: 3px solid black;
   border-radius: 15px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  /* background-color: pink; */
 }
 
 .header {
@@ -30,7 +29,6 @@
   position: absolute;
   bottom: 130px;
   left: -190px;
-  /* background-color: lightyellow; */
 }
 
 .add-button {
@@ -46,7 +44,6 @@
   position: absolute;
   top: 13px;
   right: -70px;
-  /* background-color: lightsalmon; */
 }
 
 .delete-button {
@@ -61,7 +58,6 @@
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
-  /* background-color: lightblue; */
 }
 
 .task {
@@ -75,7 +71,16 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  /* background-color: lightgreen; */
+}
+
+.task-input {
+  font-size: 24px;
+  color: gray;
+  border-style: none;
+}
+
+.task-input:focus {
+  outline: none;
 }
 
 .input {
@@ -89,7 +94,6 @@
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   color: gray;
   font-size: 24px;
-  /* background-color: lightseagreen; */
 }
 
 .task-list::-webkit-scrollbar {

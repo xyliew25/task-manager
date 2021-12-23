@@ -27,6 +27,7 @@ func Init() {
 
 func GetTasks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	json.NewEncoder(w).Encode(tasks)
 }
 
@@ -44,6 +45,7 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 
 func CreateTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	var task models.Task
 	_ = json.NewDecoder(r.Body).Decode(&task)
 	task.Id = strconv.Itoa(rand.Intn(100000000))
@@ -53,6 +55,8 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Methods", "PUT")
 	params := mux.Vars(r)
 	for index, task := range tasks {
 		if task.Id == params["id"] {
@@ -68,6 +72,8 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 func DeleteTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
 	params := mux.Vars(r)
 	for index, task := range tasks {
 		if task.Id == params["id"] {

@@ -12,9 +12,9 @@ func Router() *mux.Router {
 	// Handle routes
 	r.HandleFunc("/tasks", middleware.GetTasks).Methods("GET")
 	r.HandleFunc("/tasks/{id}", middleware.GetTask).Methods("GET")
-	r.HandleFunc("/tasks", middleware.CreateTask).Methods("POST")
-	r.HandleFunc("/tasks/{id}", middleware.UpdateTask).Methods("PUT")
-	r.HandleFunc("/tasks/{id}", middleware.DeleteTask).Methods("DELETE")
+	r.HandleFunc("/create-task", middleware.CreateTask).Methods("POST")
+	r.HandleFunc("/update-task/{id}", middleware.UpdateTask).Methods("PUT", "OPTIONS")
+	r.HandleFunc("/delete-task/{id}", middleware.DeleteTask).Methods("DELETE", "OPTIONS")
 
 	// Return router
 	return r
