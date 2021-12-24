@@ -46,8 +46,13 @@
   right: -70px;
 }
 
-.delete-button {
+.icon-btn {
   cursor: pointer;
+}
+
+.task-title {
+  cursor: pointer;
+  user-select: none;
 }
 
 .task-list {
@@ -60,7 +65,7 @@
   overflow-y: scroll;
 }
 
-.task {
+.task-container {
   min-height: 50px;
   width: 320px;
   margin: 10px 0px;
@@ -103,4 +108,8 @@
 .task-list::-webkit-scrollbar-thumb {
   background: gray; 
   border-radius: 100px;
+}
+
+.strikethrough {
+  text-decoration-line: line-through;
 }
