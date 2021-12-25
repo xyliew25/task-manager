@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 import './../App.css';
 import { Typography } from '@mui/material';
-import axios from 'axios';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { deleteTask, updateTask } from './../redux/tasks/actions';
 
-function Task({ task, getTasks }) {
+function Task({ task, deleteTask, updateTask }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(task.title);
   const input = useRef(null);
@@ -14,29 +15,20 @@ function Task({ task, getTasks }) {
     setTitle(e.target.value);
   };
   const handleDelete = () => {
-    axios
-      .delete("http://localhost:8000/delete-task/" + task.id)
-      .then(getTasks())
-      .catch(err => console.log(err));
+    deleteTask(task.id);
   };
   const handleEdit = () => {
     setIsEditing(true);
   };
   const handleDoubleClick = () => {
-    const body = JSON.stringify({ title: task.title, isDone: !task.isDone });
-    axios
-      .put("http://localhost:8000/update-task/" + task.id, body)
-      .then(getTasks())
-      .catch(err => console.log(err));
+    const newTask = JSON.stringify({ title: task.title, isDone: !task.isDone });
+    updateTask(task.id, newTask);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    const body = JSON.stringify({ title, isDone: task.isDone });
-    axios
-      .put("http://localhost:8000/update-task/" + task.id, body)
-      .then(setIsEditing(false))
-      .then(getTasks())
-      .catch(err => console.log(err));
+    const newTask = JSON.stringify({ title, isDone: task.isDone });
+    updateTask(task.id, newTask);;
+    setIsEditing(false);
   };
 
   useEffect(() => { if (isEditing) input.current.focus() }, [isEditing]);
@@ -74,4 +66,9 @@ function Task({ task, getTasks }) {
   );
 }
 
-export default Task;
+const mapDispatchToProps = {
+  deleteTask,
+  updateTask
+}
+
+export default connect(null, mapDispatchToProps)(Task);

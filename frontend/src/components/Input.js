@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import AddButton from './AddButton';
 import './../App.css';
-import axios from 'axios';
+import { createTask } from './../redux/tasks/actions';
 
-function Input({ getTasks }) {
+function Input({ createTask }) {
   const [title, setTitle] = useState("")
 
   const handleChange = e => {
@@ -12,12 +13,9 @@ function Input({ getTasks }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const body = JSON.stringify({ title, isDone: false });
-    axios
-      .post("http://localhost:8000/create-task", body)
-      .then(setTitle(""))
-      .then(getTasks())
-      .catch(err => console.log(err));
+    const task = JSON.stringify({ title, isDone: false });
+    createTask(task);
+    setTitle("");
   }
 
   return (
@@ -36,4 +34,8 @@ function Input({ getTasks }) {
   );
 }
 
-export default Input;
+const mapDispatchToProps = {
+  createTask
+};
+
+export default connect(null, mapDispatchToProps)(Input);

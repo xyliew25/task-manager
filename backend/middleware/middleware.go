@@ -46,34 +46,44 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 func CreateTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	var task models.Task
-	_ = json.NewDecoder(r.Body).Decode(&task)
-	task.Id = strconv.Itoa(rand.Intn(100000000))
-	tasks = append(tasks, task)
-	json.NewEncoder(w).Encode(task)
+	var newTask models.Task
+	newTask.Id = strconv.Itoa(rand.Intn(100000000))
+	_ = json.NewDecoder(r.Body).Decode(&newTask)
+	tasks = append(tasks, newTask)
+	json.NewEncoder(w).Encode(tasks)
 }
 
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	w.Header().Set("Access-Control-Allow-Methods", "PUT")
+	w.Header().Set("Access-Control-Allow-Methods", "PUT, OPTIONS")
+
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+
 	params := mux.Vars(r)
 	for index, task := range tasks {
 		if task.Id == params["id"] {
-			var task models.Task
-			_ = json.NewDecoder(r.Body).Decode(&task)
-			task.Id = params["id"]
-			tasks[index] = task
-			json.NewEncoder(w).Encode(task)
-			return
+			var newTask models.Task
+			_ = json.NewDecoder(r.Body).Decode(&newTask)
+			newTask.Id = params["id"]
+			tasks[index] = newTask
+			break
 		}
 	}
+	json.NewEncoder(w).Encode(tasks)
 }
 
 func DeleteTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, OPTIONS")
+
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+
 	params := mux.Vars(r)
 	for index, task := range tasks {
 		if task.Id == params["id"] {
