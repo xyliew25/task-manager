@@ -35,9 +35,7 @@ function TaskWithTagDesc({
           />
         </span>
       </span>
-      <div className={task.isDone ? "strikethrough task-title" : "task-title"}
-        onDoubleClick={handleDoubleClick}
-      >
+      <div className="task-title" onDoubleClick={handleDoubleClick}>
         {task.title}
       </div>
       <div className="task-desc">

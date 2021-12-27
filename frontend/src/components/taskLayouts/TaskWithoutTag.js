@@ -17,9 +17,7 @@ function TaskWithoutTag({
   return (
     <>
       <span className="row">
-        <div className={task.isDone ? "strikethrough task-title" : "task-title"}
-          onDoubleClick={handleDoubleClick}
-        >
+        <div className="task-title" onDoubleClick={handleDoubleClick}>
           {task.title}
         </div>
         <span>

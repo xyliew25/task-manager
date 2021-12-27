@@ -35,7 +35,7 @@ function Task({ task, deleteTask, updateTask, enterEditMode }) {
   };
 
   return (
-    <div className="task-container">
+    <div className={task.isDone ? "task-container strikethrough" : "task-container"}>
       {task.tag && task.desc
         ? <TaskWithTagDesc
           task={task}

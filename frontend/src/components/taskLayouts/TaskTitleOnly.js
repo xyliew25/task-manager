@@ -2,23 +2,21 @@ import './../../App.css';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function TaskTitleOnly({ 
-  task, 
-  isHoveringEdit, 
-  isHoveringDelete, 
-  handleMouseEnterEdit, 
-  handleMouseLeaveEdit, 
-  handleMouseEnterDelete, 
-  handleMouseLeaveDelete, 
-  handleEdit, 
-  handleDelete, 
-  handleDoubleClick 
+function TaskTitleOnly({
+  task,
+  isHoveringEdit,
+  isHoveringDelete,
+  handleMouseEnterEdit,
+  handleMouseLeaveEdit,
+  handleMouseEnterDelete,
+  handleMouseLeaveDelete,
+  handleEdit,
+  handleDelete,
+  handleDoubleClick
 }) {
   return (
     <span className="row-title-only">
-      <div className={task.isDone ? "strikethrough task-title" : "task-title"}
-        onDoubleClick={handleDoubleClick}
-      >
+      <div className="task-title" onDoubleClick={handleDoubleClick}>
         {task.title}
       </div>
       <span>
