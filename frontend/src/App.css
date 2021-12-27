@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  user-select: none;
 }
 
 .body {
@@ -138,7 +139,6 @@
 .task-title {
   font-size: 25px;
   cursor: pointer;
-  user-select: none;
   margin-bottom: 5px;
 }
 
@@ -147,6 +147,11 @@
   font-weight: 300;
   font-size: 15px;
   margin-bottom: 10px;
+}
+
+.task-title-form {
+  font-size: 25px;
+  margin-bottom: 5px;
 }
 
 .form-btn {
@@ -192,4 +197,8 @@
 
 .icon-btn {
   cursor: pointer;
+}
+
+.hidden {
+  color: white;
 }

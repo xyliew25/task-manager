@@ -62,7 +62,7 @@ function TaskForm({ initialFormFields, createTask, updateTask, exitEditMode }) {
       </span>
       <input
         type="text"
-        className="form-field task-title"
+        className="form-field task-title-form"
         name="title"
         value={formFields?.title}
         onChange={e => handleChange(e)}
