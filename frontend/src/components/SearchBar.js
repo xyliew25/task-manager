@@ -1,9 +1,10 @@
 import './../App.css';
+import { connect } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
-function SearchBar() {
+function SearchBar({ isOpenSearch }) {
   return (
-    <form className="search-bar">
+    <form className={isOpenSearch ? "search-bar" : "display-none"}>
       <input 
         type="text" 
         placeholder="Search..." 
@@ -16,4 +17,8 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+const mapStateToProps = state => ({
+  isOpenSearch: state.buttons.isOpenSearch
+});
+
+export default connect(mapStateToProps, null)(SearchBar);
