@@ -1,7 +1,7 @@
+import './../App.css';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import './../App.css';
-import Task from "./Task";
+import TaskItem from "./TaskItem";
 import { getTasks } from './../redux/tasks/actions';
 
 function TaskList({ tasks, getTasks }) {
@@ -12,7 +12,7 @@ function TaskList({ tasks, getTasks }) {
   return (
     <div className="task-list">
       {tasks.map(task => 
-        <Task key={task.id} task={task} />
+        <TaskItem key={task.id} task={task} />
       )}
     </div>
   );

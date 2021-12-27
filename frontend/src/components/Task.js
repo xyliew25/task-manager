@@ -1,68 +1,94 @@
-import { useState, useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
 import './../App.css';
-import { Typography } from '@mui/material';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import TaskTitleOnly from './taskLayouts/TaskTitleOnly';
+import TaskWithTagDesc from './taskLayouts/TaskWithTagDesc';
+import TaskWithoutDesc from './taskLayouts/TaskWithoutDesc';
+import TaskWithoutTag from './taskLayouts/TaskWithoutTag';
 import { deleteTask, updateTask } from './../redux/tasks/actions';
 
-function Task({ task, deleteTask, updateTask }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(task.title);
-  const input = useRef(null);
+function Task({ task, deleteTask, updateTask, enterEditMode }) {
+  const [isHoveringEdit, setIsHoveringEdit] = useState(false);
+  const [isHoveringDelete, setIsHoveringDelete] = useState(false);
 
-  const handleChange = e => {
-    setTitle(e.target.value);
+  const handleMouseEnterEdit = () => {
+    setIsHoveringEdit(true);
+  };
+  const handleMouseLeaveEdit = () => {
+    setIsHoveringEdit(false);
+  };
+  const handleMouseEnterDelete = () => {
+    setIsHoveringDelete(true);
+  };
+  const handleMouseLeaveDelete = () => {
+    setIsHoveringDelete(false);
   };
   const handleDelete = () => {
     deleteTask(task.id);
   };
   const handleEdit = () => {
-    setIsEditing(true);
+    enterEditMode();
   };
   const handleDoubleClick = () => {
-    const newTask = JSON.stringify({ title: task.title, isDone: !task.isDone });
-    updateTask(task.id, newTask);
+    const taskToUpdate = JSON.stringify({ ...task, isDone: !task.isDone });
+    updateTask(task.id, taskToUpdate);
   };
-  const handleSubmit = e => {
-    e.preventDefault();
-    const newTask = JSON.stringify({ title, isDone: task.isDone });
-    updateTask(task.id, newTask);;
-    setIsEditing(false);
-  };
-
-  useEffect(() => { if (isEditing) input.current.focus() }, [isEditing]);
 
   return (
-    <>
-      {isEditing
-        ?
-        <form onSubmit={e => handleSubmit(e)} className="task-container">
-          <input
-            type="text"
-            className="task-input"
-            name="title"
-            value={title}
-            onChange={e => handleChange(e)}
-            ref={input}
+    <div className={task.isDone ? "task-container strikethrough" : "task-container"}>
+      {task.tag && task.desc
+        ? <TaskWithTagDesc
+          task={task}
+          isHoveringEdit={isHoveringEdit}
+          isHoveringDelete={isHoveringDelete}
+          handleMouseEnterEdit={handleMouseEnterEdit}
+          handleMouseLeaveEdit={handleMouseLeaveEdit}
+          handleMouseEnterDelete={handleMouseEnterDelete}
+          handleMouseLeaveDelete={handleMouseLeaveDelete}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          handleDoubleClick={handleDoubleClick}
+        />
+        : task.tag && !task.desc
+          ? <TaskWithoutDesc
+            task={task}
+            isHoveringEdit={isHoveringEdit}
+            isHoveringDelete={isHoveringDelete}
+            handleMouseEnterEdit={handleMouseEnterEdit}
+            handleMouseLeaveEdit={handleMouseLeaveEdit}
+            handleMouseEnterDelete={handleMouseEnterDelete}
+            handleMouseLeaveDelete={handleMouseLeaveDelete}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            handleDoubleClick={handleDoubleClick}
           />
-        </form>
-        :
-        <div className="task-container">
-          <Typography
-            variant="h5"
-            className={task.isDone ? "strikethrough task-title" : "task-title"}
-            onDoubleClick={handleDoubleClick}
-          >
-            {task.title}
-          </Typography>
-          <span>
-            <EditOutlinedIcon className="icon-btn" onClick={handleEdit} />
-            <DeleteOutlinedIcon className="icon-btn" onClick={handleDelete} />
-          </span>
-        </div>
+          : !task.tag && task.desc
+            ? <TaskWithoutTag
+              task={task}
+              isHoveringEdit={isHoveringEdit}
+              isHoveringDelete={isHoveringDelete}
+              handleMouseEnterEdit={handleMouseEnterEdit}
+              handleMouseLeaveEdit={handleMouseLeaveEdit}
+              handleMouseEnterDelete={handleMouseEnterDelete}
+              handleMouseLeaveDelete={handleMouseLeaveDelete}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleDoubleClick={handleDoubleClick}
+            />
+            : <TaskTitleOnly
+              task={task}
+              isHoveringEdit={isHoveringEdit}
+              isHoveringDelete={isHoveringDelete}
+              handleMouseEnterEdit={handleMouseEnterEdit}
+              handleMouseLeaveEdit={handleMouseLeaveEdit}
+              handleMouseEnterDelete={handleMouseEnterDelete}
+              handleMouseLeaveDelete={handleMouseLeaveDelete}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleDoubleClick={handleDoubleClick}
+            />
       }
-    </>
+    </div>
   );
 }
 
