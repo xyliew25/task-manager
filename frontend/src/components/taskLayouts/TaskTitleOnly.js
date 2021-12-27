@@ -1,0 +1,21 @@
+import './../../App.css';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
+function TaskTitleOnly({ task, handleEdit, handleDelete, handleDoubleClick }) {
+  return (
+    <span className="row-title-only">
+      <div className={task.isDone ? "strikethrough task-title" : "task-title"}
+        onDoubleClick={handleDoubleClick}
+      >
+        {task.title}
+      </div>
+      <span>
+        <EditOutlinedIcon className="icon-btn" onClick={handleEdit} />
+        <DeleteOutlinedIcon className="icon-btn" onClick={handleDelete} />
+      </span>
+    </span>
+  );
+}
+
+export default TaskTitleOnly;

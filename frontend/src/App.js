@@ -1,10 +1,10 @@
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Footer from './components/Footer';
-import Input from './components/Input';
 import Header from './components/Header';
-import TaskList from './components/TaskList';
+import Content from './components/Content';
+import Buttons from './components/Buttons';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <div className="body">
         <div className="main">
           <Header />
-          <Input />
-          <TaskList />
+          <Content />
+          <Buttons />
         </div>
         <Footer />
       </div>

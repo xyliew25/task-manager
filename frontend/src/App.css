@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .body {
@@ -24,81 +29,130 @@
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   transform: rotate(-90deg);
   position: absolute;
-  bottom: 130px;
-  left: -190px;
+  bottom: 150px;
+  left: -210px;
+  font-family: 'Coda Caption', sans-serif;
+  font-size: 40px;
 }
 
-.add-button {
-  height: 50px;
-  width: 50px;
+.btn-container {
   border: 3px solid black;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   position: absolute;
-  top: 13px;
-  right: -70px;
+  top: -3px;
+  right: -80px;
 }
 
-.icon-btn {
+.side-btn {
   cursor: pointer;
+  margin: 8px;
 }
 
-.task-title {
-  cursor: pointer;
-  user-select: none;
-}
-
-.task-list {
-  height: 70vh;
-  width: 30vw;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-}
-
-.task-container {
-  min-height: 50px;
-  width: 320px;
-  margin: 10px 0px;
-  padding: 10px;
+.search-bar {
+  width: 65vw;
   border: 3px solid black;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
-
-.task-input {
   font-size: 24px;
   color: gray;
+  padding: 10px 15px;
+  margin-top: 20px;
+  margin-left: -10px;
+}
+
+.search {
+  font-size: 25px;
+  width: 100%;
+}
+
+.form {
+  width: 65vw;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  font-size: 24px;
+  color: gray;
+  padding: 10px 15px;
+  margin-top: 20px;
+  margin-left: -10px;
+}
+
+.edit-form {
+  width: 65vw;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  font-size: 24px;
+  color: gray;
+  padding: 10px 15px;
+  margin: 13px 0px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.row-title-only {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-field {
   border-style: none;
 }
 
-.task-input:focus {
+.form-field:focus {
   outline: none;
 }
 
-.input {
-  min-height: 50px;
-  width: 320px;
-  margin-top: 20px;
-  margin-left: -10px;
-  padding: 10px;
-  border: 3px solid black;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  color: gray;
-  font-size: 24px;
+.task-tag {
+  font-family: 'Joti One';
+  font-size: 20px;
+}
+
+.task-title {
+  font-size: 25px;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 5px;
+}
+
+.task-desc {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.form-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .task-list::-webkit-scrollbar {
@@ -112,4 +166,30 @@
 
 .strikethrough {
   text-decoration-line: line-through;
+}
+
+.task-list {
+  height: 40vh;
+  width: 68vw;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.task-container {
+  width: 65vw;
+  margin: 10px 0px;
+  padding: 10px 15px;
+  border: 3px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  font-size: 24px;
+}
+
+.icon-btn {
+  cursor: pointer;
 }
