@@ -14,15 +14,15 @@ var tasks []models.Task
 
 func Init() {
 	// Hardcoded data
-	tasks = append(tasks, models.Task{Id: "1", Title: "Study with friends", IsDone: false})
-	tasks = append(tasks, models.Task{Id: "2", Title: "Buy groceries", IsDone: true})
-	tasks = append(tasks, models.Task{Id: "3", Title: "Read textbook", IsDone: true})
-	tasks = append(tasks, models.Task{Id: "4", Title: "Study with friends", IsDone: false})
-	tasks = append(tasks, models.Task{Id: "5", Title: "Buy groceries", IsDone: true})
-	tasks = append(tasks, models.Task{Id: "6", Title: "Read textbook", IsDone: true})
-	tasks = append(tasks, models.Task{Id: "7", Title: "Study with friends", IsDone: false})
-	tasks = append(tasks, models.Task{Id: "8", Title: "Buy groceries", IsDone: true})
-	tasks = append(tasks, models.Task{Id: "9", Title: "Read textbook", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "1", Title: "Look for internships", Tag: "Work", IsDone: false})
+	tasks = append(tasks, models.Task{Id: "2", Title: "Do research on some modules", Desc: "CS3230, CS3243, CS3244, CS2102.", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "3", Title: "Buy groceries", Desc: "Milk, bread, cereal, tomatoes, eggs.", Tag: "Lifestyle", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "4", Title: "Revise on previous modules", IsDone: false})
+	tasks = append(tasks, models.Task{Id: "5", Title: "Hangout with friends", Tag: "Social", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "6", Title: "Prepare for exams", Desc: "Lecture notes, tutorial sheets, lab assignments.", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "7", Title: "Call mummy", Tag: "Family", IsDone: false})
+	tasks = append(tasks, models.Task{Id: "8", Title: "Pack luggage", IsDone: true})
+	tasks = append(tasks, models.Task{Id: "9", Title: "PRACTICE!!", Tag: "Music", IsDone: true})
 }
 
 func GetTasks(w http.ResponseWriter, r *http.Request) {
