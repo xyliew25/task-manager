@@ -6,7 +6,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitEditMode, isOpenAdd }) {
+function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitEditMode }) {
   const emptyFormFields = {
     title: "",
     desc: "",
@@ -39,7 +39,7 @@ function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitE
   return (
     <form 
       onSubmit={e => handleSubmit(e)} 
-      className={initialFormFields ? "edit-form" : isOpenAdd ? "form" : "display-none"}
+      className={initialFormFields ? "edit-form" : "form"}
     >
       <span className="row">
         <input
@@ -73,6 +73,7 @@ function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitE
         value={formFields?.title}
         onChange={e => handleChange(e)}
         placeholder="Add title..."
+        autoFocus
       />
       <input
         type="text"
@@ -86,14 +87,10 @@ function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitE
   );
 }
 
-const mapStateToProps = state => ({
-  isOpenAdd: state.buttons.isOpenAdd
-});
-
 const mapDispatchToProps = {
   createTask,
   deleteTask,
   updateTask
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);
+export default connect(null, mapDispatchToProps)(TaskForm);

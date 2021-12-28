@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import TaskItem from "./TaskItem";
 import { getTasks } from './../redux/tasks/actions';
 
-function TaskList({ tasks, getTasks }) {
+function TaskList({ filteredTasks, getTasks }) {
   useEffect(() => {
     getTasks();
   }, []);
 
   return (
     <div className="task-list">
-      {tasks.map(task => 
+      {filteredTasks.map(task => 
         <TaskItem key={task.id} task={task} />
       )}
     </div>
@@ -19,7 +19,7 @@ function TaskList({ tasks, getTasks }) {
 }
 
 const mapStateToProps = state => ({
-  tasks: state.tasks.tasks
+  filteredTasks: state.tasks.filteredTasks
 })
 
 const mapDispatchToProps = {

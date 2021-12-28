@@ -1,15 +1,21 @@
+import { connect } from 'react-redux';
 import SearchBar from "./SearchBar";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 
-function Content() {
+function Content({ isOpenSearch, isOpenAdd }) {
   return (
     <div className="content">
-      <SearchBar />
-      <TaskForm />
+      {isOpenSearch && <SearchBar />}
+      {isOpenAdd && <TaskForm />}
       <TaskList />
     </div>
   );
 }
 
-export default Content;
+const mapStateToProps = state => ({
+  isOpenSearch: state.buttons.isOpenSearch,
+  isOpenAdd: state.buttons.isOpenAdd
+})
+
+export default connect(mapStateToProps, null)(Content);
