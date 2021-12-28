@@ -4,7 +4,8 @@ import {
   GET_TASK,
   CREATE_TASK,
   DELETE_TASK,
-  UPDATE_TASK
+  UPDATE_TASK,
+  SEARCH_TASK
 } from './types';
 
 export const getTasks = () => dispatch => {
@@ -56,3 +57,8 @@ export const updateTask = (id, task) => dispatch => {
   }))
   .catch(err => console.log(err));
 };
+
+export const searchTask = keyword => ({
+  type: SEARCH_TASK,
+  payload: keyword
+});
