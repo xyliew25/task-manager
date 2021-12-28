@@ -1,12 +1,12 @@
 import './../App.css';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { createTask, updateTask } from '../redux/tasks/actions';
+import { createTask, deleteTask, updateTask } from '../redux/tasks/actions';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function TaskForm({ initialFormFields, createTask, updateTask, exitEditMode, isOpenAdd }) {
+function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitEditMode, isOpenAdd }) {
   const emptyFormFields = {
     title: "",
     desc: "",
@@ -32,11 +32,14 @@ function TaskForm({ initialFormFields, createTask, updateTask, exitEditMode, isO
     }
     setFormFields(emptyFormFields);
   }
+  const handleDelete = () => {
+    deleteTask(formFields.id);
+  }
 
   return (
     <form 
       onSubmit={e => handleSubmit(e)} 
-      className={isOpenAdd ? (initialFormFields ? "edit-form" : "form") : "display-none"}
+      className={initialFormFields ? "edit-form" : isOpenAdd ? "form" : "display-none"}
     >
       <span className="row">
         <input
@@ -53,8 +56,8 @@ function TaskForm({ initialFormFields, createTask, updateTask, exitEditMode, isO
             <button type="submit" className="form-btn">
               <EditOutlinedIcon />
             </button>
-            <button className="form-btn">
-              <DeleteOutlinedIcon />
+            <button type="button" className="form-btn">
+              <DeleteOutlinedIcon onClick={handleDelete} />
             </button>
           </span>
           :
@@ -89,6 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   createTask,
+  deleteTask,
   updateTask
 };
 
