@@ -22,15 +22,17 @@ function TaskForm({ initialFormFields, createTask, deleteTask, updateTask, exitE
   }
   const handleSubmit = e => {
     e.preventDefault();
-    if (initialFormFields) {
-      const taskToUpdate = JSON.stringify(formFields);
-      updateTask(formFields.id, taskToUpdate);
-      exitEditMode();
-    } else {
-      const newTask = JSON.stringify({ ...formFields, isDone: false });
-      createTask(newTask);
+    if (formFields.title !== "") {
+      if (initialFormFields) {
+        const taskToUpdate = JSON.stringify(formFields);
+        updateTask(formFields.id, taskToUpdate);
+        exitEditMode();
+      } else {
+        const newTask = JSON.stringify({ ...formFields, isDone: false });
+        createTask(newTask);
+      }
+      setFormFields(emptyFormFields);
     }
-    setFormFields(emptyFormFields);
   }
   const handleDelete = () => {
     deleteTask(formFields.id);
