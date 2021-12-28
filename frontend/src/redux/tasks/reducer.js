@@ -21,7 +21,7 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: payload.reverse(),
-        filteredTasks: payload.reverse()
+        filteredTasks: payload
       };
     
     case GET_TASK:
@@ -34,21 +34,21 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: payload.reverse(),
-        filteredTasks: payload.reverse()
+        filteredTasks: payload
       };
     
     case DELETE_TASK:
       return {
         ...state,
         tasks: payload.reverse(),
-        filteredTasks: payload.reverse()
+        filteredTasks: payload
       };
 
     case UPDATE_TASK:
       return {
         ...state,
         tasks: payload.reverse(),
-        filteredTasks: payload.reverse()
+        filteredTasks: payload
       };
     
     case SEARCH_TASK:
