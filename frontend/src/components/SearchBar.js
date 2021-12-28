@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { searchTask } from './../redux/tasks/actions';
 
-function SearchBar({ isOpenSearch, searchTask }) {
+function SearchBar({ searchTask }) {
   const [keyword, setKeyword] = useState("");
 
   const handleChange = e => {
@@ -17,7 +17,7 @@ function SearchBar({ isOpenSearch, searchTask }) {
 
   return (
     <form 
-      className={isOpenSearch ? "search-bar" : "display-none"}
+      className={"search-bar"}
       onSubmit={e => handleSubmit(e)}
     >
       <input 
@@ -27,6 +27,7 @@ function SearchBar({ isOpenSearch, searchTask }) {
         name="keyword"
         value={keyword}
         onChange={e => handleChange(e)}
+        autoFocus
       />
       <button type="submit" className="form-btn">
         <SearchOutlinedIcon />
@@ -35,12 +36,8 @@ function SearchBar({ isOpenSearch, searchTask }) {
   );
 }
 
-const mapStateToProps = state => ({
-  isOpenSearch: state.buttons.isOpenSearch
-});
-
 const mapDispatchToProps = {
   searchTask
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(SearchBar);
